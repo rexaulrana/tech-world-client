@@ -1,0 +1,42 @@
+[
+  {
+    "product_type": "Smartphone",
+    "product_name": "Galaxy S22",
+    "tags": "#Mobile, #Smartphone, #Technology",
+    "release_date": "2022-03",
+    "image_url": "https://i.ibb.co/0XNcpwx/fea1.jpg",
+    "product_details": "The Galaxy S22 is a flagship smartphone known for its high-performance camera, powerful processor, and stunning display.",
+    "external_link": "https://www.samsung.com/galaxy-s22",
+    "up_vote": 3
+  },
+  {
+    "product_type": "Laptop/Notebook",
+    "product_name": "MacBook Pro 2022",
+    "tags": "#Laptop, #Notebook, #Technology",
+    "release_date": "2022-06",
+    "image_url": "https://i.ibb.co/LYcj8Gk/fea2.jpg",
+    "product_details": "The MacBook Pro 2022 is a powerful laptop designed for professional users, featuring a high-resolution Retina display and the latest Apple silicon.",
+    "external_link": "https://www.apple.com/macbook-pro",
+    "up_vote": 5
+  },
+  {
+    "product_type": "Smart Home Device",
+    "product_name": "Amazon Echo 5th Gen",
+    "tags": "#SmartHome, #Speaker, #Technology",
+    "release_date": "2022-09",
+    "image_url": "https://i.ibb.co/LYcj8Gk/fea3.jpg",
+    "product_details": "The Amazon Echo 5th Gen is a smart speaker with Alexa voice control, perfect for smart home integration and entertainment.",
+    "external_link": "https://www.amazon.com/echo-5th-gen",
+    "up_vote": 9
+  },
+  {
+    "product_type": "Wearable",
+    "product_name": "Fitbit Charge 5",
+    "tags": "#Wearable, #FitnessTracker, #Technology",
+    "release_date": "2022-10",
+    "image_url": "https://i.ibb.co/0XNcpwx/fea4.jpg",
+    "product_details": "The Fitbit Charge 5 is a feature-packed fitness tracker with advanced health monitoring capabilities and a sleek design.",
+    "external_link": "https://www.fitbit.com/charge-5",
+    "up_vote": 3
+  }
+]
