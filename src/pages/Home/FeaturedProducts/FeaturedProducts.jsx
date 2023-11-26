@@ -7,8 +7,9 @@ const FeaturedProducts = () => {
   const axiosPublic = useAxiosPublic();
   const {
     isPending,
-    error,
+
     data: features,
+    refetch,
   } = useQuery({
     queryKey: ["features"],
     queryFn: async () => {
@@ -20,15 +21,19 @@ const FeaturedProducts = () => {
   if (isPending) {
     return <h1>LOADING............</h1>;
   }
-  if (error) {
-    return <h1>ERRRROOORRR</h1>;
-  }
+  // if (error) {
+  //   return <h1>ERRRROOORRR</h1>;
+  // }
   return (
     <div>
       <SectionTitle title1={"Featured"}></SectionTitle>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
         {features?.map((feature) => (
-          <Feature key={feature?._id} feature={feature}></Feature>
+          <Feature
+            key={feature?._id}
+            refetch={refetch}
+            feature={feature}
+          ></Feature>
         ))}
       </div>
     </div>
