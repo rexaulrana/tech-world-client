@@ -1,0 +1,62 @@
+[
+  {
+    "product_type": "Smartphone",
+    "product_name": "XYZ Galaxy Z Fold 4",
+    "tags": "#Mobile, #Smartphone, #Technology",
+    "release_date": "2022-04-15",
+    "image_url": "https://i.ibb.co/qMpBgPM/trend.jpg",
+    "product_details": "The XYZ Galaxy Z Fold 4 is a cutting-edge foldable smartphone with a seamless transition between a compact phone and a tablet. Advanced camera system, sleek design, and large AMOLED display redefine the smartphone experience.",
+    "external_link": "https://www.example.com/xyz-galaxy-z-fold-4",
+    "up_vote": 6
+  },
+  {
+    "product_type": "Gaming Console",
+    "product_name": "NextGenBox Series X",
+    "tags": "#Gaming, #Console, #Entertainment",
+    "release_date": "2022-05-20",
+    "image_url": "https://i.ibb.co/Gc26FL4/slide3.jpg",
+    "product_details": "The NextGenBox Series X takes immersive gaming to new heights with 4K graphics, lightning-fast load times, and an extensive library of exclusive titles. A must-have for gaming enthusiasts.",
+    "external_link": "https://www.example.com/nextgenbox-series-x",
+    "up_vote": 9
+  },
+  {
+    "product_type": "Smart Home Device",
+    "product_name": "EcoHub 2023",
+    "tags": "#SmartHome, #Automation, #Technology",
+    "release_date": "2022-06-10",
+    "image_url": "https://i.ibb.co/FzMwNJZ/trend4.jpg",
+    "product_details": "The EcoHub 2023 is a smart home hub that integrates all your connected devices for seamless control. Lighting, security cameras, thermostats - it brings convenience and energy efficiency to your fingertips.",
+    "external_link": "https://www.example.com/ecohub-2023",
+    "up_vote": 3
+  },
+  {
+    "product_type": "Wireless Earbuds",
+    "product_name": "SonicBoom AirPods Pro Max",
+    "tags": "#Audio, #Wireless, #Technology",
+    "release_date": "2022-07-25",
+    "image_url": "https://i.ibb.co/C1m6kkm/trend5.jpg",
+    "product_details": "The SonicBoom AirPods Pro Max offers an unparalleled audio experience with active noise cancellation and a customizable fit. Crystal-clear sound and a sleek design for music lovers on the go.",
+    "external_link": "https://www.example.com/sonicboom-airpods-pro-max",
+    "up_vote": 7
+  },
+  {
+    "product_type": "Fitness Tracker",
+    "product_name": "FitWell 360",
+    "tags": "#Fitness, #Health, #Wearable",
+    "release_date": "2022-08-12",
+    "image_url": "https://i.ibb.co/T1PxMSC/trend6.jpgs",
+    "product_details": "The FitWell 360 is a versatile fitness tracker equipped with advanced health monitoring features. Heart rate tracking, sleep analysis - your personal wellness companion for a healthy and active lifestyle.",
+    "external_link": "https://www.example.com/fitwell-360",
+    "up_vote": 9
+  },
+  {
+    "product_type": "Smart Home Security",
+    "product_name": "SentryGuard 5K",
+    "tags": "#SmartHome, #Security, #Technology",
+    "release_date": "2022-09-30",
+    "image_url": "https://i.ibb.co/T1PxMSC/trend2.jpg",
+    "product_details": "The SentryGuard 5K is a state-of-the-art smart home security system. AI-powered facial recognition, real-time alerts, and easy integration with other smart devices provide robust protection for your home.",
+    "external_link": "https://www.example.com/sentryguard-5k",
+    "up_vote": 10
+  }
+]
