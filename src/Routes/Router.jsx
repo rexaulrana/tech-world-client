@@ -3,8 +3,11 @@ import Main from "../Layout/Main";
 import Home from "../pages/Home/Home";
 import Products from "../pages/products/Products";
 import Login from "../pages/Login/Login";
-import SignUp from "../pages/signup/SignUp";
+
 import ProductDetails from "../pages/Home/FeaturedProducts/ProductDetails";
+import Reviews from "../pages/Home/FeaturedProducts/Reviews";
+import Report from "../pages/Home/FeaturedProducts/Report";
+import Registration from "../pages/registration/Registration";
 
 const Router = createBrowserRouter([
   {
@@ -24,12 +27,21 @@ const Router = createBrowserRouter([
         element: <Login></Login>,
       },
       {
-        path: "signUp",
-        element: <SignUp></SignUp>,
+        path: "registration",
+        element: <Registration></Registration>,
       },
       {
-        path: "features/:id",
+        path: "products/:id",
         element: <ProductDetails></ProductDetails>,
+        loader: () => fetch("http://localhost:5000/features"),
+      },
+      {
+        path: "/reviews",
+        element: <Reviews></Reviews>,
+      },
+      {
+        path: "/report",
+        element: <Report></Report>,
       },
     ],
   },

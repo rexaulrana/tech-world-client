@@ -2,6 +2,7 @@ import { BiSolidUpvote } from "react-icons/bi";
 import useAxiosPublic from "../../../../hooks/useAxiosPublic/useAxiosPublic";
 import { useState } from "react";
 import toast from "react-hot-toast";
+import { Link } from "react-router-dom";
 
 const TrendingItem = ({ item }) => {
   const axiosPublic = useAxiosPublic();
@@ -42,7 +43,11 @@ const TrendingItem = ({ item }) => {
           <img src={image_url} alt={product_name} />
         </figure>
         <div className="card-body">
-          <h2 className="card-title">{product_name}</h2>
+          <Link to={`/products`}>
+            <h2 className="card-title hover:font-bold hover:text-[#0e588d]">
+              {product_name}
+            </h2>
+          </Link>
           <p className="link link-primary">{tags}</p>
           <div className="card-actions justify-center">
             <div className="bg-[#0e588d] py-3 mt-3">

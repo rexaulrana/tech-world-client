@@ -38,7 +38,7 @@ const Feature = ({ feature, refetch }) => {
         />
       </figure>
       <div className="card-body items-center text-center">
-        <Link to={`/features/${_id}`}>
+        <Link to={`/products/${_id}`}>
           <h2 className="card-title hover:font-bold hover:text-[#0e588d]">
             {product_name}
           </h2>
