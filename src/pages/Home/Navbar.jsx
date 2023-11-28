@@ -1,6 +1,10 @@
+import { useContext } from "react";
 import { NavLink } from "react-router-dom";
+import { AuthContext } from "../../provider/AuthProvider";
+import toast from "react-hot-toast";
 
 const Navbar = () => {
+  const { user, logOut } = useContext(AuthContext);
   const navLinks = (
     <>
       <li>
@@ -9,22 +13,31 @@ const Navbar = () => {
         </NavLink>
       </li>
       <li>
-        <NavLink className="text-lg font-medium" to={"products"}>
+        <NavLink className="text-lg font-medium" to={"/products"}>
           products
         </NavLink>
       </li>
-      <li>
-        <NavLink className="text-lg font-medium" to={"dashboard"}>
-          Dashboard
-        </NavLink>
-      </li>
-      <li>
-        <NavLink className="text-lg font-medium" to={"/login"}>
-          Login
-        </NavLink>
-      </li>
+
+      {!user && (
+        <li>
+          <NavLink className="text-lg font-medium" to={"/login"}>
+            Login
+          </NavLink>
+        </li>
+      )}
     </>
   );
+
+  const handleLogOut = () => {
+    logOut()
+      .then(() => {
+        // console.log(result);
+        toast("User logout successfully");
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
   return (
     <div className="navbar   bg-[#56b342] fixed max-w-7xl mx-auto  z-20 bg-opacity-50 ">
       <div className="navbar-start">
@@ -57,7 +70,28 @@ const Navbar = () => {
       <div className="navbar-center hidden lg:flex">
         <ul className="menu menu-horizontal px-1">{navLinks}</ul>
       </div>
-      <div className="navbar-end">droupdown</div>
+      <div className="navbar-end">
+        <div className="dropdown dropdown-end">
+          <div tabIndex={0} role="button" className=" m-1">
+            <img className="w-10 rounded-full" src={user?.photoURL} alt="" />
+          </div>
+          <ul className="dropdown-content z-[2] menu p-4 shadow bg-base-100 rounded-box w-52">
+            <li>{user?.displayName}</li>
+            <li>
+              <NavLink className="text-lg font-medium" to={"/dashboard"}>
+                Dashboard
+              </NavLink>
+            </li>
+            {user && (
+              <li>
+                <button onClick={handleLogOut} className="text-lg font-medium">
+                  Logout
+                </button>
+              </li>
+            )}
+          </ul>
+        </div>
+      </div>
     </div>
   );
 };

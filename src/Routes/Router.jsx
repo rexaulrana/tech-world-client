@@ -8,6 +8,7 @@ import ProductDetails from "../pages/Home/FeaturedProducts/ProductDetails";
 import Reviews from "../pages/Home/FeaturedProducts/Reviews";
 import Report from "../pages/Home/FeaturedProducts/Report";
 import Registration from "../pages/registration/Registration";
+import PrivateRoute from "./PrivateRoute";
 
 const Router = createBrowserRouter([
   {
@@ -19,19 +20,24 @@ const Router = createBrowserRouter([
         element: <Home></Home>,
       },
       {
-        path: "products",
-        element: <Products></Products>,
+        path: "/products",
+        element: (
+          <PrivateRoute>
+            {" "}
+            <Products></Products>
+          </PrivateRoute>
+        ),
       },
       {
-        path: "login",
+        path: "/login",
         element: <Login></Login>,
       },
       {
-        path: "registration",
+        path: "/registration",
         element: <Registration></Registration>,
       },
       {
-        path: "products/:id",
+        path: "/product/:id",
         element: <ProductDetails></ProductDetails>,
         loader: () => fetch("http://localhost:5000/features"),
       },

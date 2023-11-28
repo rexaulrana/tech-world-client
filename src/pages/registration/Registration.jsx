@@ -1,15 +1,19 @@
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, useLocation, useNavigate } from "react-router-dom";
 import { FaGoogle } from "react-icons/fa";
 import { useForm } from "react-hook-form";
 import { useContext, useState } from "react";
 import { AuthContext } from "../../provider/AuthProvider";
 import { updateProfile } from "firebase/auth";
 import { auth } from "../../firebase/firebase.config";
+import toast from "react-hot-toast";
 
 const Registration = () => {
   const { createUser } = useContext(AuthContext);
   const [showPass, setShowPass] = useState(false);
   //   const [error, setError] = useState("");
+  const navigate = useNavigate();
+  const location = useLocation();
+  let from = location.state?.from?.pathname || "/";
   const {
     register,
     handleSubmit,
@@ -25,19 +29,18 @@ const Registration = () => {
         updateProfile(auth.currentUser, {
           displayName: data?.name,
           photoURL: data?.photo,
-        }).then(() => {
-          const userInfo = {
-            name: data.name,
-            email: data.email,
-          }.catch((error) => {
+        })
+          .then(() => {
+            toast.success("Registration successful");
+            navigate(from, { replace: true });
+            // const userInfo = {
+            //   name: data.name,
+            //   email: data.email,
+            // };
+          })
+          .catch((error) => {
             console.log(error);
           });
-
-          // alert("Registration successful");
-        });
-        //   .catch((error) => {
-        //     console.log(error);
-        //   });
         reset();
       })
       .catch((err) => {

@@ -1,24 +1,46 @@
 // import React from "react";
 
-import { useState } from "react";
-import Navbar from "../Home/Navbar";
+import { useContext, useState } from "react";
 import { useForm } from "react-hook-form";
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, useLocation, useNavigate } from "react-router-dom";
 import { FaGoogle } from "react-icons/fa";
+import { AuthContext } from "../../provider/AuthProvider";
+import toast from "react-hot-toast";
 
 const Login = () => {
+  const navigate = useNavigate();
+  const location = useLocation();
+  // const axiosPublic = useAxiosPublic();
+  let from = location.state?.from?.pathname || "/";
   const [showPass, setShowPass] = useState(false);
-  // const [error, setError] = useState("");
+  const [error, setError] = useState("");
+  const { signIn } = useContext(AuthContext);
   const {
     register,
+    reset,
     handleSubmit,
-
     formState: { errors },
   } = useForm();
-  const onSubmit = (data) => console.log(data);
+  const onSubmit = (data) => {
+    // console.log(data.email);
+    const email = data?.email;
+    const password = data?.password;
+
+    signIn(email, password)
+      .then(() => {
+        // console.log(result.user);
+        toast.success("user login successfully");
+        navigate(from, { replace: true });
+        reset();
+      })
+      .catch((error) => {
+        console.log(error);
+        setError(error.message);
+      });
+  };
   return (
     <div>
-      <Navbar></Navbar>
+      {/* <Navbar></Navbar> */}
       <div className="lg:flex justify-center items-center gap-10">
         <div>
           <h2 className="text-4xl font-semibold text-center mb-4 mt-20">
@@ -47,14 +69,18 @@ const Login = () => {
               </label>
               <div className="relative">
                 <input
+                  {...register("password", { required: true })}
                   name="password"
                   // type="text"
                   type={showPass ? "text" : "password"}
                   placeholder="Enter Your Password "
                   className=" input input-bordered w-full lg:w-96"
                 />
-                <div className="text-center mt-2 mb-2">
-                  <h1>error</h1>
+                {errors.password && (
+                  <span className="text-red-600">This field is required</span>
+                )}
+                <div className="text-center text-red-600 mt-2 mb-2">
+                  {error && <h1>{error}</h1>}
                 </div>
 
                 <div
