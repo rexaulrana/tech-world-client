@@ -5,7 +5,7 @@ import Products from "../pages/products/Products";
 import Login from "../pages/Login/Login";
 
 import FeaturedProductDetails from "../pages/Home/FeaturedProducts/FeaturedProductDetails";
-import Reviews from "../pages/Home/FeaturedProducts/Reviews";
+import Reviews from "../pages/Home/FeaturedProducts/Review/Reviews";
 import Report from "../pages/Home/FeaturedProducts/Report";
 import Registration from "../pages/registration/Registration";
 import PrivateRoute from "./PrivateRoute";

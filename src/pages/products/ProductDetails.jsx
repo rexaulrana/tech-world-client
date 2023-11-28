@@ -3,6 +3,7 @@ import { Link, useLoaderData, useParams } from "react-router-dom";
 import Loader from "../../components/Loader";
 import Navbar from "../Home/Navbar";
 import SectionTitle from "../../shared/SectionTitle";
+import Reviews from "../Home/FeaturedProducts/Review/Reviews";
 
 const ProductDetails = () => {
   const [product, setProduct] = useState([]);
@@ -64,6 +65,7 @@ const ProductDetails = () => {
       </div>
       <div className="">
         <SectionTitle title1={"Customers Reviews"}></SectionTitle>
+        <Reviews></Reviews>
       </div>
     </div>
   );
