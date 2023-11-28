@@ -2,15 +2,14 @@ import { useContext } from "react";
 // import { AuthContext } from "../../provider/AuthProvider";
 import { Navigate, useLocation } from "react-router-dom";
 import { AuthContext } from "../provider/AuthProvider";
+import Loader from "../components/Loader";
 
 const PrivateRoute = ({ children }) => {
   const { user, loading } = useContext(AuthContext);
   //   const navigate = useNavigate();
   const location = useLocation();
   if (loading) {
-    return (
-      <span className="py-30 px-20 loading loading-bars loading-lg"></span>
-    );
+    return <Loader />;
   }
   if (user) {
     return children;

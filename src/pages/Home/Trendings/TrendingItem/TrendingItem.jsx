@@ -5,6 +5,7 @@ import toast from "react-hot-toast";
 import { Link } from "react-router-dom";
 
 const TrendingItem = ({ item }) => {
+  const [disabled, setDisabled] = useState(false);
   const axiosPublic = useAxiosPublic();
   // console.log(item);
   const {
@@ -30,6 +31,7 @@ const TrendingItem = ({ item }) => {
         if (res.data.modifiedCount > 0) {
           // refetch();
           toast.success(" UpVote Successful!");
+          setDisabled(true);
         }
       })
       .catch((err) => {
@@ -52,6 +54,7 @@ const TrendingItem = ({ item }) => {
           <div className="card-actions justify-center">
             <div className="bg-[#0e588d] py-3 mt-3">
               <button
+                disabled={disabled}
                 onClick={() => handleUpVote(_id)}
                 title="UPVOTE"
                 className="p-3"

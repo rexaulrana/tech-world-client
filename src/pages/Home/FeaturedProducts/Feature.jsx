@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 
 const Feature = ({ feature, refetch }) => {
   const axiosPublic = useAxiosPublic();
+  const [disabled, setDisabled] = useState(false);
   // console.log(feature);
   const { _id, up_vote, tags, product_name, image_url } = feature;
 
@@ -22,6 +23,7 @@ const Feature = ({ feature, refetch }) => {
         if (res.data.modifiedCount > 0) {
           refetch();
           toast.success(" UpVote Successful!");
+          setDisabled(true);
         }
       })
       .catch((err) => {
@@ -46,6 +48,7 @@ const Feature = ({ feature, refetch }) => {
         <p className="link link-primary">{tags}</p>
         <div className="bg-[#0e588d] py-3 mt-3">
           <button
+            disabled={disabled}
             onClick={() => handleUpVote(_id)}
             title="UPVOTE"
             className="p-3"

@@ -3,6 +3,7 @@ import useAxiosPublic from "../../../hooks/useAxiosPublic/useAxiosPublic";
 import SectionTitle from "../../../shared/SectionTitle";
 import Feature from "./Feature";
 import { useState } from "react";
+import Loader from "../../../components/Loader";
 
 const FeaturedProducts = () => {
   const [latest, setLatest] = useState(true);
@@ -23,7 +24,7 @@ const FeaturedProducts = () => {
   });
   // console.log(features);
   if (isPending) {
-    return <h1>LOADING............</h1>;
+    return <Loader />;
   }
   // if (error) {
   //   return <h1>ERRRROOORRR</h1>;
