@@ -10,17 +10,27 @@ import toast from "react-hot-toast";
 const Login = () => {
   const navigate = useNavigate();
   const location = useLocation();
-  // const axiosPublic = useAxiosPublic();
   let from = location.state?.from?.pathname || "/";
   const [showPass, setShowPass] = useState(false);
   const [error, setError] = useState("");
-  const { signIn } = useContext(AuthContext);
+  const { signIn, handleGoogle } = useContext(AuthContext);
   const {
     register,
     reset,
     handleSubmit,
     formState: { errors },
   } = useForm();
+  const handleGoogleLog = () => {
+    handleGoogle()
+      .then(() => {
+        // console.log(result);
+        toast.success("user login successfully");
+        navigate(from, { replace: true });
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
   const onSubmit = (data) => {
     // console.log(data.email);
     const email = data?.email;
@@ -38,6 +48,7 @@ const Login = () => {
         setError(error.message);
       });
   };
+
   return (
     <div>
       {/* <Navbar></Navbar> */}
@@ -102,7 +113,10 @@ const Login = () => {
           <div className="divider divider-primary">OR</div>
           <div className="flex justify-center mt-1 mb-1">
             {" "}
-            <button className="btn btn-outline flex justify-center items-center gap-2">
+            <button
+              onClick={handleGoogleLog}
+              className="btn btn-outline flex justify-center items-center gap-2"
+            >
               {" "}
               <span>
                 <FaGoogle></FaGoogle>

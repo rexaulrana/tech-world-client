@@ -1,11 +1,13 @@
 import { BiSolidUpvote } from "react-icons/bi";
 import useAxiosPublic from "../../../../hooks/useAxiosPublic/useAxiosPublic";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import toast from "react-hot-toast";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../../../../provider/AuthProvider";
 
 const TrendingItem = ({ item }) => {
   const [disabled, setDisabled] = useState(false);
+  const { user } = useContext(AuthContext);
   const axiosPublic = useAxiosPublic();
   // console.log(item);
   const {
@@ -19,7 +21,11 @@ const TrendingItem = ({ item }) => {
     product_name,
   } = item;
   const [upVote, setUpVote] = useState(up_vote + 1);
+
   const handleUpVote = (_id) => {
+    if (!user) {
+      setDisabled(true);
+    }
     // console.log(upVote);
     setUpVote(upVote + 1);
 
@@ -31,13 +37,13 @@ const TrendingItem = ({ item }) => {
         if (res.data.modifiedCount > 0) {
           // refetch();
           toast.success(" UpVote Successful!");
-          setDisabled(true);
         }
       })
       .catch((err) => {
         console.log(err);
       });
   };
+
   return (
     <div>
       <div className="card card-compact  h-[300px]  md:h-[300px] bg-base-100 shadow-xl ">

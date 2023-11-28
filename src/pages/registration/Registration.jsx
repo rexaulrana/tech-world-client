@@ -8,7 +8,7 @@ import { auth } from "../../firebase/firebase.config";
 import toast from "react-hot-toast";
 
 const Registration = () => {
-  const { createUser } = useContext(AuthContext);
+  const { createUser, handleGoogle } = useContext(AuthContext);
   const [showPass, setShowPass] = useState(false);
   //   const [error, setError] = useState("");
   const navigate = useNavigate();
@@ -45,6 +45,17 @@ const Registration = () => {
       })
       .catch((err) => {
         console.log(err);
+      });
+  };
+  const handleGoogleLog = () => {
+    handleGoogle()
+      .then(() => {
+        // console.log(result);
+        toast.success("user login successfully");
+        navigate(from, { replace: true });
+      })
+      .catch((error) => {
+        console.log(error);
       });
   };
   return (
@@ -158,7 +169,10 @@ const Registration = () => {
         <div className="divider divider-primary">OR</div>
         <div className="flex justify-center mt-1 mb-1">
           {" "}
-          <button className="btn btn-outline flex justify-center items-center gap-2">
+          <button
+            onClick={handleGoogleLog}
+            className="btn btn-outline flex justify-center items-center gap-2"
+          >
             {" "}
             <span>
               <FaGoogle></FaGoogle>
