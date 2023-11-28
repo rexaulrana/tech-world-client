@@ -6,9 +6,11 @@ import { AuthContext } from "../../provider/AuthProvider";
 import { updateProfile } from "firebase/auth";
 import { auth } from "../../firebase/firebase.config";
 import toast from "react-hot-toast";
+import useAxiosPublic from "../../hooks/useAxiosPublic/useAxiosPublic";
 
 const Registration = () => {
   const { createUser, handleGoogle } = useContext(AuthContext);
+  const axiosPublic = useAxiosPublic();
   const [showPass, setShowPass] = useState(false);
   //   const [error, setError] = useState("");
   const navigate = useNavigate();
@@ -31,8 +33,18 @@ const Registration = () => {
           photoURL: data?.photo,
         })
           .then(() => {
-            toast.success("Registration successful");
-            navigate(from, { replace: true });
+            const userInfo = {
+              name: data?.name,
+              email: data?.email,
+            };
+            // console.log("profile updated");
+            axiosPublic.post("/users", userInfo).then((result) => {
+              console.log("user added", result);
+
+              toast.success("Registration successful");
+              navigate(from, { replace: true });
+              reset();
+            });
             // const userInfo = {
             //   name: data.name,
             //   email: data.email,
@@ -41,7 +53,6 @@ const Registration = () => {
           .catch((error) => {
             console.log(error);
           });
-        reset();
       })
       .catch((err) => {
         console.log(err);
@@ -49,10 +60,18 @@ const Registration = () => {
   };
   const handleGoogleLog = () => {
     handleGoogle()
-      .then(() => {
+      .then((result) => {
         // console.log(result);
-        toast.success("user login successfully");
-        navigate(from, { replace: true });
+        const userInfo = {
+          name: result?.user?.displayName,
+          email: result?.user?.email,
+        };
+        axiosPublic.post("/users", userInfo).then((result) => {
+          console.log("user added", result);
+
+          toast.success("user login successfully");
+          navigate(from, { replace: true });
+        });
       })
       .catch((error) => {
         console.log(error);

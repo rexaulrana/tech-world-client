@@ -1,24 +1,24 @@
 import { useState } from "react";
 import { BiSolidUpvote } from "react-icons/bi";
-import useAxiosPublic from "../../../hooks/useAxiosPublic/useAxiosPublic";
-import toast from "react-hot-toast";
 import { Link } from "react-router-dom";
+import useAxiosPublic from "../../hooks/useAxiosPublic/useAxiosPublic";
+import toast from "react-hot-toast";
 
-const Feature = ({ feature, refetch }) => {
+const ProductCard = ({ product, refetch }) => {
   const axiosPublic = useAxiosPublic();
   const [disabled, setDisabled] = useState(false);
   // console.log(feature);
-  const { _id, up_vote, tags, product_name, image_url } = feature;
+  const { _id, up_vote, tags, product_name, image_url } = product;
 
   const [upVote, setUpVote] = useState(up_vote + 1);
-  const handleUpVote = (_id) => {
-    // console.log(upVote);
+  const handleUpVote = (id) => {
+    // console.log(id);
     setUpVote(upVote + 1);
 
     axiosPublic
-      .patch(`/features/${_id}`, { upVote })
+      .patch(`/product/${id}`, { upVote })
       .then((res) => {
-        console.log(res.data);
+        console.log(res?.data);
         // console.log("state", upVote);
         if (res.data.modifiedCount > 0) {
           refetch();
@@ -31,16 +31,16 @@ const Feature = ({ feature, refetch }) => {
       });
   };
   return (
-    <div className="card  shadow-[#56b342]  shadow-lg">
+    <div className="card h-[400px]  shadow-[#56b342]  shadow-lg">
       <figure className="px-10 pt-10">
         <img
           src={image_url}
           alt={product_name}
-          className="rounded-xl h-[300px]"
+          className="rounded-xl h-[400px]"
         />
       </figure>
       <div className="card-body items-center text-center">
-        <Link to={`/featuredProduct/${_id}`}>
+        <Link to={`/productDetails/${_id}`}>
           <h2 className="card-title hover:font-bold hover:text-[#0e588d]">
             {product_name}
           </h2>
@@ -65,4 +65,4 @@ const Feature = ({ feature, refetch }) => {
   );
 };
 
-export default Feature;
+export default ProductCard;

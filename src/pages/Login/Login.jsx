@@ -6,9 +6,11 @@ import { Link, NavLink, useLocation, useNavigate } from "react-router-dom";
 import { FaGoogle } from "react-icons/fa";
 import { AuthContext } from "../../provider/AuthProvider";
 import toast from "react-hot-toast";
+import useAxiosPublic from "../../hooks/useAxiosPublic/useAxiosPublic";
 
 const Login = () => {
   const navigate = useNavigate();
+  const axiosPublic = useAxiosPublic();
   const location = useLocation();
   let from = location.state?.from?.pathname || "/";
   const [showPass, setShowPass] = useState(false);
@@ -22,10 +24,23 @@ const Login = () => {
   } = useForm();
   const handleGoogleLog = () => {
     handleGoogle()
-      .then(() => {
+      .then((result) => {
         // console.log(result);
-        toast.success("user login successfully");
-        navigate(from, { replace: true });
+        const userInfo = {
+          name: result?.user?.displayName,
+          email: result?.user?.email,
+        };
+        axiosPublic
+          .post("/users", userInfo)
+          .then((result) => {
+            console.log("user added", result);
+
+            toast.success("user login successfully");
+            navigate(from, { replace: true });
+          })
+          .catch((error) => {
+            console.log(error);
+          });
       })
       .catch((error) => {
         console.log(error);

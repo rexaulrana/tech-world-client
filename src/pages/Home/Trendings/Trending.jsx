@@ -60,7 +60,7 @@ const Trending = () => {
     <div>
       <SectionTitle title1={"Trending"}></SectionTitle>
       <div>
-        <div className="flex justify-start items-center">
+        <div className="flex justify-center items-center text-3xl">
           <h1 className=" font-medium mr-2">Filter:</h1>
           <button
             onClick={() => setLargest(!largest)}

@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
 import { Link, useLoaderData, useParams } from "react-router-dom";
-import SectionTitle from "../../../shared/SectionTitle";
-import Navbar from "../Navbar";
+import Loader from "../../components/Loader";
+import Navbar from "../Home/Navbar";
+import SectionTitle from "../../shared/SectionTitle";
 
 const ProductDetails = () => {
   const [product, setProduct] = useState([]);
@@ -15,18 +16,9 @@ const ProductDetails = () => {
     setProduct(data);
     setLoader(false);
   }, [id, loadedData]);
-  // console.log(product);
-  // useEffect(() => {
-  //   setLoader(true);
-  //   axios("http://localhost:5000/trending").then((res) => {
-  //     const data = res?.data.find((d) => d._id === id);
-  //     console.log(data);
-  //     setProduct(data);
-  //     setLoader(false);
-  //   });
-  // }, [id]);
+
   if (loader) {
-    <h1>LOADERRRRRRRRRRRRRRRRRRRRRRRRRRRRR</h1>;
+    return <Loader />;
   }
   const {
     up_vote,
@@ -39,11 +31,11 @@ const ProductDetails = () => {
     external_link,
   } = product;
   return (
-    <div>
+    <div className="">
       <Navbar></Navbar>
-      <div className="hero min-h-screen bg-base-200">
-        <div className="hero-content flex-col lg:flex-row">
-          <img src={image_url} className="max-w-sm rounded-lg shadow-2xl" />
+      <div className=" bg-base-200">
+        <div className="py-24 hero-content flex-col lg:flex-row">
+          <img src={image_url} className="w-[500px] rounded-lg shadow-2xl" />
           <div>
             <h1 className="text-5xl font-bold">{product_name}</h1>
             {/* <p>{tags}</p> */}
@@ -56,18 +48,18 @@ const ProductDetails = () => {
               <Link className="link link-hover">{external_link}</Link>
             </div>
             <div className="join join-vertical lg:join-horizontal mt-2">
-              <Link to={"/reviews"} className="btn  btn-outline join-item">
+              <Link to={"/addReview"} className="btn  btn-outline join-item">
                 <button>Review</button>
               </Link>
               <Link to={"/report"} className="btn join-item btn-outline">
                 <button>Report</button>
               </Link>
             </div>
-            <div>
-              <SectionTitle title1={"All Reviews"}></SectionTitle>
-            </div>
           </div>
         </div>
+      </div>
+      <div className="">
+        <SectionTitle title1={"All Reviews"}></SectionTitle>
       </div>
     </div>
   );

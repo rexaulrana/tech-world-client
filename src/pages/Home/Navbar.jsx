@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import { AuthContext } from "../../provider/AuthProvider";
 import toast from "react-hot-toast";
 
@@ -18,7 +18,7 @@ const Navbar = () => {
         </NavLink>
       </li>
 
-      {!user && (
+      {!user?.email && (
         <li>
           <NavLink className="text-lg font-medium" to={"/login"}>
             Login
@@ -32,7 +32,7 @@ const Navbar = () => {
     logOut()
       .then(() => {
         // console.log(result);
-        toast("User logout successfully");
+        toast.success("User logout successfully");
       })
       .catch((err) => {
         console.log(err);
@@ -65,7 +65,9 @@ const Navbar = () => {
             {navLinks}
           </ul>
         </div>
-        <a className="btn btn-ghost text-xl">Tech World</a>
+        <Link to="/" className="btn btn-ghost text-xl">
+          Tech World
+        </Link>
       </div>
       <div className="navbar-center hidden lg:flex">
         <ul className="menu menu-horizontal px-1">{navLinks}</ul>
@@ -73,10 +75,17 @@ const Navbar = () => {
       <div className="navbar-end">
         <div className="dropdown dropdown-end">
           <div tabIndex={0} role="button" className=" m-1">
-            <img className="w-10 rounded-full" src={user?.photoURL} alt="" />
+            {user && (
+              <img
+                title="Setting"
+                className="w-10 rounded-full"
+                src={user?.photoURL}
+                alt=""
+              />
+            )}
           </div>
           <ul className="dropdown-content z-[2] menu p-4 shadow bg-base-100 rounded-box w-52">
-            <li>{user?.displayName}</li>
+            <li className="font-medium text-center">{user?.displayName}</li>
             <li>
               <NavLink className="text-lg font-medium" to={"/dashboard"}>
                 Dashboard

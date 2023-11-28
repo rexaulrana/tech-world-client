@@ -4,11 +4,13 @@ import Home from "../pages/Home/Home";
 import Products from "../pages/products/Products";
 import Login from "../pages/Login/Login";
 
-import ProductDetails from "../pages/Home/FeaturedProducts/ProductDetails";
+import FeaturedProductDetails from "../pages/Home/FeaturedProducts/FeaturedProductDetails";
 import Reviews from "../pages/Home/FeaturedProducts/Reviews";
 import Report from "../pages/Home/FeaturedProducts/Report";
 import Registration from "../pages/registration/Registration";
 import PrivateRoute from "./PrivateRoute";
+import AddReview from "../pages/Home/FeaturedProducts/Review/AddReview";
+import ProductDetails from "../pages/products/ProductDetails";
 
 const Router = createBrowserRouter([
   {
@@ -21,12 +23,7 @@ const Router = createBrowserRouter([
       },
       {
         path: "/products",
-        element: (
-          <PrivateRoute>
-            {" "}
-            <Products></Products>
-          </PrivateRoute>
-        ),
+        element: <Products></Products>,
       },
       {
         path: "/login",
@@ -37,8 +34,12 @@ const Router = createBrowserRouter([
         element: <Registration></Registration>,
       },
       {
-        path: "/product/:id",
-        element: <ProductDetails></ProductDetails>,
+        path: "/featuredProduct/:id",
+        element: (
+          <PrivateRoute>
+            <FeaturedProductDetails></FeaturedProductDetails>,
+          </PrivateRoute>
+        ),
         loader: () => fetch("http://localhost:5000/features"),
       },
       {
@@ -48,6 +49,19 @@ const Router = createBrowserRouter([
       {
         path: "/report",
         element: <Report></Report>,
+      },
+      {
+        path: "/addReview",
+        element: <AddReview></AddReview>,
+      },
+      {
+        path: "/productDetails/:id",
+        element: (
+          <PrivateRoute>
+            <ProductDetails></ProductDetails>
+          </PrivateRoute>
+        ),
+        loader: () => fetch("http://localhost:5000/products"),
       },
     ],
   },
