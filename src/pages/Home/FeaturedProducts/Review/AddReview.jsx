@@ -1,45 +1,50 @@
 import { useContext } from "react";
 import SectionTitle from "../../../../shared/SectionTitle";
 import { AuthContext } from "../../../../provider/AuthProvider";
+import { useNavigate, useParams } from "react-router-dom";
+import useAxiosPublic from "../../../../hooks/useAxiosPublic/useAxiosPublic";
+import toast from "react-hot-toast";
 
 const AddReview = () => {
   const { user } = useContext(AuthContext);
+  const navigate = useNavigate();
+  const axiosPublic = useAxiosPublic();
+  const { id } = useParams();
   const handleAddReview = (e) => {
     e.preventDefault();
     const form = e.target;
     const name = form.name.value;
-    const rating = parseInt(form.rating.value);
+    const rating = parseFloat(form.rating.value);
     const comment = form.comment.value;
-
     // console.log(reviewDate);
     const newReview = {
       name,
       rating,
       comment,
-
-      //   reviewItem,
+      userImg: user?.photoURL,
+      itemId: id,
+      userEmail: user?.email,
     };
-    console.log(newReview);
+    // console.log(newReview);
 
-    //    axios
-    //      .post("https://classic-hotel-server.vercel.app/reviews", newReview)
-    //      .then((result) => {
-    //        // console.log(result.data);
-    //        if (result.data.acknowledged) {
-    //          Swal.fire({
-    //            position: "center",
-    //            icon: "success",
-    //            title: "Your review has been saved",
-    //            showConfirmButton: true,
-    //            timer: 1500,
-    //          });
-    //          form.reset();
-    //          navigate("/myBookings");
-    //        }
-    //      })
-    //      .catch((err) => {
-    //        console.log(err);
-    //      });
+    axiosPublic
+      .post("/reviews", newReview)
+      .then((result) => {
+        console.log(result.data);
+        // if (result?.data?.message) {
+        //   toast.error("Review already submitted");
+        //   navigate("/products");
+        // }
+
+        if (result?.data?.insertedId) {
+          toast.success("Your review has been  Submitted");
+          form.reset();
+          navigate("/products");
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
   return (
     <div>
@@ -71,6 +76,7 @@ const AddReview = () => {
             <input
               type="number"
               name="rating"
+              step="any"
               required
               placeholder="Type here"
               className="input input-bordered w-full max-w-xs"

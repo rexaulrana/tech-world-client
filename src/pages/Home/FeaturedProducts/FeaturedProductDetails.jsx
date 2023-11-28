@@ -21,6 +21,7 @@ const FeaturedProductDetails = () => {
     return <Loader />;
   }
   const {
+    _id,
     up_vote,
     // tags,
     // release_date,
@@ -48,7 +49,10 @@ const FeaturedProductDetails = () => {
               <Link className="link link-hover">{external_link}</Link>
             </div>
             <div className="join join-vertical lg:join-horizontal mt-2">
-              <Link to={"/addReview"} className="btn  btn-outline join-item">
+              <Link
+                to={`/addReview/${_id}`}
+                className="btn  btn-outline join-item"
+              >
                 <button>Review</button>
               </Link>
               <Link to={"/report"} className="btn join-item btn-outline">
