@@ -39,7 +39,7 @@ const AddReview = () => {
         if (result?.data?.insertedId) {
           toast.success("Your review has been  Submitted");
           form.reset();
-          navigate("/products");
+          // navigate("/products");
         }
       })
       .catch((err) => {
@@ -94,7 +94,12 @@ const AddReview = () => {
               required
             ></textarea>
           </div>
-          <button className="mt-1 btn  btn-outline btn-accent">Submit</button>
+          <button
+            onClick={() => navigate(-1)}
+            className="mt-1 btn  btn-outline btn-accent"
+          >
+            Submit
+          </button>
         </form>
       </div>
     </div>

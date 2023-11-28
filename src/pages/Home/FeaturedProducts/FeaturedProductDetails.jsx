@@ -1,10 +1,16 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Link, useLoaderData, useParams } from "react-router-dom";
 import SectionTitle from "../../../shared/SectionTitle";
 import Navbar from "../Navbar";
 import Loader from "../../../components/Loader";
+import { AuthContext } from "../../../provider/AuthProvider";
+import useAxiosPublic from "../../../hooks/useAxiosPublic/useAxiosPublic";
+import Reviews from "./Review/Reviews";
+import toast from "react-hot-toast";
 
 const FeaturedProductDetails = () => {
+  const axiosPublic = useAxiosPublic();
+  const { user } = useContext(AuthContext);
   const [product, setProduct] = useState([]);
   const [loader, setLoader] = useState(false);
   const loadedData = useLoaderData();
@@ -31,6 +37,29 @@ const FeaturedProductDetails = () => {
     image_url,
     external_link,
   } = product;
+
+  // handle report button
+  const handleReport = () => {
+    const reportedItem = {
+      reportedId: _id,
+      product_name,
+      image_url,
+      personEmail: user?.email,
+      status: true,
+    };
+    // console.log("report", reportedItem);
+    axiosPublic
+      .post("/reports", reportedItem)
+      .then((res) => {
+        // console.log(res.data);
+        if (res?.data?.insertedId) {
+          toast.success("Report submitted successfully");
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
   return (
     <div>
       <Navbar></Navbar>
@@ -55,15 +84,21 @@ const FeaturedProductDetails = () => {
               >
                 <button>Review</button>
               </Link>
-              <Link to={"/report"} className="btn join-item btn-outline">
-                <button>Report</button>
-              </Link>
+
+              <button
+                onClick={() => handleReport(product)}
+                className="btn join-item btn-outline"
+              >
+                Report
+              </button>
             </div>
           </div>
         </div>
       </div>
       <div className="">
         <SectionTitle title1={"All Reviews"}></SectionTitle>
+
+        <Reviews></Reviews>
       </div>
     </div>
   );

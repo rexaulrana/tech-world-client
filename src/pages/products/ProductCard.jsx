@@ -54,7 +54,6 @@ const ProductCard = ({ product, refetch }) => {
             className="p-3"
           >
             <BiSolidUpvote className=" text-2xl hover:text-red-600" />
-            <div></div>
           </button>
           <span className="text-black font-medium text-2xl border-l-4  border-green-500 p-4">
             {upVote}

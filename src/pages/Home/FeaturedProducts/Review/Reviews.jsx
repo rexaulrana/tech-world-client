@@ -30,7 +30,7 @@ const Reviews = () => {
     setLoading(false);
   }, [reviews, id]);
 
-  console.log("hi", review);
+  // console.log("hi", review);
   if (isPending || loading) {
     return <Loader />;
   }
@@ -51,7 +51,7 @@ const Reviews = () => {
           ))}
         </div>
       ) : (
-        <h1 className="text-center text-5xl py-7">NO REVIEW </h1>
+        <h1 className="text-center text-5xl py-7">NO REVIEW</h1>
       )}
     </div>
   );

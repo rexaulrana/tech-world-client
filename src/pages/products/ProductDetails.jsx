@@ -1,14 +1,19 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Link, useLoaderData, useParams } from "react-router-dom";
 import Loader from "../../components/Loader";
 import Navbar from "../Home/Navbar";
 import SectionTitle from "../../shared/SectionTitle";
 import Reviews from "../Home/FeaturedProducts/Review/Reviews";
+import useAxiosPublic from "../../hooks/useAxiosPublic/useAxiosPublic";
+import toast from "react-hot-toast";
+import { AuthContext } from "../../provider/AuthProvider";
 
 const ProductDetails = () => {
   const [product, setProduct] = useState([]);
   const [loader, setLoader] = useState(false);
   const loadedData = useLoaderData();
+  const { user } = useContext(AuthContext);
+  const axiosPublic = useAxiosPublic();
   const { id } = useParams();
   // console.log(loadedData);
   useEffect(() => {
@@ -32,6 +37,29 @@ const ProductDetails = () => {
     image_url,
     external_link,
   } = product;
+
+  // handle report button
+  const handleReport = () => {
+    const reportedItem = {
+      reportedId: _id,
+      product_name,
+      image_url,
+      personEmail: user?.email,
+      status: true,
+    };
+    // console.log("report", reportedItem);
+    axiosPublic
+      .post("/reports", reportedItem)
+      .then((res) => {
+        // console.log(res.data);
+        if (res?.data?.insertedId) {
+          toast.success("Report submitted successfully");
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
   return (
     <div className="">
       <Navbar></Navbar>
@@ -56,9 +84,15 @@ const ProductDetails = () => {
               >
                 <button>Review</button>
               </Link>
-              <Link to={"/report"} className="btn join-item btn-outline">
-                <button>Report</button>
-              </Link>
+
+              <button
+                onClick={() => {
+                  handleReport(product);
+                }}
+                className="btn join-item btn-outline"
+              >
+                Report
+              </button>
             </div>
           </div>
         </div>
