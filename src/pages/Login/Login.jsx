@@ -26,6 +26,8 @@ const Login = () => {
     handleGoogle()
       .then((result) => {
         // console.log(result);
+        toast.success("user login successfully");
+        navigate(from, { replace: true });
         const userInfo = {
           name: result?.user?.displayName,
           email: result?.user?.email,
@@ -34,9 +36,6 @@ const Login = () => {
           .post("/users", userInfo)
           .then((result) => {
             console.log("user added", result);
-
-            toast.success("user login successfully");
-            navigate(from, { replace: true });
           })
           .catch((error) => {
             console.log(error);
@@ -44,6 +43,7 @@ const Login = () => {
       })
       .catch((error) => {
         console.log(error);
+        toast.error(error);
       });
   };
   const onSubmit = (data) => {

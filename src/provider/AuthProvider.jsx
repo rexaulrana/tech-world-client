@@ -8,9 +8,11 @@ import {
   signOut,
 } from "firebase/auth";
 import { auth } from "../firebase/firebase.config";
+import useAxiosPublic from "../hooks/useAxiosPublic/useAxiosPublic";
 
 export const AuthContext = createContext(null);
 const AuthProvider = ({ children }) => {
+  const axiosPublic = useAxiosPublic();
   const [user, setUser] = useState("");
   const [loading, setLoading] = useState(true);
   //   const axiosPublic = useAxiosPublic();
@@ -39,35 +41,35 @@ const AuthProvider = ({ children }) => {
   };
 
   useEffect(() => {
+    setLoading(true);
     const unSubscribe = onAuthStateChanged(auth, (currentUser) => {
       setUser(currentUser);
-      console.log(user);
-      setLoading(false);
-      //  const userInfo = { email: currentUser?.email || user?.email };
-      //  // console.log(userInfo);
-      //  if (currentUser?.email || user?.email) {
-      //    // get user info and create token and set token to Ls
-      //    axiosPublic
-      //      .post("/jwt", userInfo)
-      //      .then((result) => {
-      //        // console.log(result.data);
-      //        if (result?.data?.token) {
-      //          localStorage.setItem("token", result?.data?.token);
-      //          setLoading(false);
-      //        }
-      //      })
-      //      .catch((err) => {
-      //        console.log(err);
-      //      });
-      //  } else {
-      //    // if no user then remove token from LS
-      //    localStorage.removeItem("token");
-      //  }
+      console.log("auth", currentUser);
+      const userInfo = { email: currentUser?.email || user?.email };
+      // console.log(userInfo);
+      if (currentUser?.email || user?.email) {
+        // get user info and create token and set token to Ls
+        axiosPublic
+          .post("/jwt", userInfo)
+          .then((result) => {
+            console.log("jwt", result?.data);
+            if (result?.data?.token) {
+              localStorage.setItem("token", result?.data?.token);
+              setLoading(false);
+            }
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+      } else {
+        // if no user then remove token from LS
+        localStorage.removeItem("token");
+      }
     });
     return () => {
       unSubscribe;
     };
-  }, [user]);
+  }, [user, axiosPublic]);
   const authInfo = {
     user,
     loading,

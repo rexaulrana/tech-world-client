@@ -64,15 +64,14 @@ const Registration = () => {
     handleGoogle()
       .then((result) => {
         // console.log(result);
+        toast.success("user login successfully");
+        navigate(from, { replace: true });
         const userInfo = {
           name: result?.user?.displayName,
           email: result?.user?.email,
         };
         axiosPublic.post("/users", userInfo).then((result) => {
           console.log("user added", result);
-
-          toast.success("user login successfully");
-          navigate(from, { replace: true });
         });
       })
       .catch((error) => {
