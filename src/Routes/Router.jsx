@@ -12,6 +12,10 @@ import PrivateRoute from "./PrivateRoute";
 import AddReview from "../pages/Home/FeaturedProducts/Review/AddReview";
 import ProductDetails from "../pages/products/ProductDetails";
 import ErrorPage from "../components/ErrorPage";
+import Dashboard from "../pages/Dashboard/Dashboard";
+import MyProfile from "../pages/Dashboard/user/MyProfile";
+import AddProduct from "../pages/Dashboard/user/AddProduct";
+import MyProducts from "../pages/Dashboard/user/MyProducts";
 
 const Router = createBrowserRouter([
   {
@@ -75,7 +79,25 @@ const Router = createBrowserRouter([
             <ProductDetails></ProductDetails>
           </PrivateRoute>
         ),
-        loader: () => fetch("http://localhost:5000/products"),
+        loader: () => fetch("http://localhost:5000/allProducts"),
+      },
+    ],
+  },
+  {
+    path: "dashboard",
+    element: <Dashboard></Dashboard>,
+    children: [
+      {
+        path: "dashboard/myProfile",
+        element: <MyProfile></MyProfile>,
+      },
+      {
+        path: "dashboard/addProduct",
+        element: <AddProduct></AddProduct>,
+      },
+      {
+        path: "dashboard/myProducts",
+        element: <MyProducts></MyProducts>,
       },
     ],
   },

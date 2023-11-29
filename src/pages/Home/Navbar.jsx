@@ -87,7 +87,7 @@ const Navbar = () => {
           <ul className="dropdown-content z-[2] menu p-4 shadow bg-base-100 rounded-box w-52">
             <li className="font-medium text-center">{user?.displayName}</li>
             <li>
-              <NavLink className="text-lg font-medium" to={"dashboard"}>
+              <NavLink className="text-lg font-medium" to={"/dashboard"}>
                 Dashboard
               </NavLink>
             </li>

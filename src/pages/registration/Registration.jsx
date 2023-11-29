@@ -9,6 +9,7 @@ import toast from "react-hot-toast";
 import useAxiosPublic from "../../hooks/useAxiosPublic/useAxiosPublic";
 
 const Registration = () => {
+  // const[error,setError]=useState('')
   const { createUser, handleGoogle } = useContext(AuthContext);
   const axiosPublic = useAxiosPublic();
   const [showPass, setShowPass] = useState(false);
@@ -56,6 +57,7 @@ const Registration = () => {
       })
       .catch((err) => {
         console.log(err);
+        // error
       });
   };
   const handleGoogleLog = () => {

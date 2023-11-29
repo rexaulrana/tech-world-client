@@ -18,7 +18,7 @@ const FeaturedProductDetails = () => {
   // console.log(loadedData);
   useEffect(() => {
     setLoader(true);
-    const data = loadedData?.find((d) => d._id === id);
+    const data = loadedData?.find((d) => d?._id === id);
     setProduct(data);
     setLoader(false);
   }, [id, loadedData]);
@@ -37,7 +37,7 @@ const FeaturedProductDetails = () => {
     image_url,
     external_link,
   } = product;
-
+  // console.log(id, _id);
   // handle report button
   const handleReport = () => {
     const reportedItem = {

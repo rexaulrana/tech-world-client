@@ -6,25 +6,26 @@ import Loader from "../../components/Loader";
 import { useEffect, useState } from "react";
 
 const Products = () => {
-  const axiosPublic = useAxiosPublic();
   const [search, setSearch] = useState("");
+  // const all = useProducts(search);
+  // console.log("all ", all);
+  const axiosPublic = useAxiosPublic();
   // const [noProducts, setNoProducts] = useState("");
   const [loading, setLoading] = useState(false);
   const [products, setProducts] = useState([]);
   useEffect(() => {
     setLoading(true);
-    axiosPublic(`http://localhost:5000/products?search=${search}`).then(
-      (data) => {
-        // console.log(data.data);
-        // if (data?.data?.length === 0) {
-        //   setLoading(true);
+    axiosPublic(`/products?search=${search}`).then((data) => {
+      // console.log(data.data);
+      // if (data?.data?.length === 0) {
+      //   setLoading(true);
 
-        //   return setNoProducts("No Products Found,Please search again ");
-        // }
-        setProducts(data?.data);
-        setLoading(false);
-      }
-    );
+      //   return setNoProducts("No Products Found,Please search again ");
+      // }
+      // console.log(data.data);
+      setProducts(data?.data);
+      setLoading(false);
+    });
   }, [axiosPublic, search]);
   // const {
   //   isPending,

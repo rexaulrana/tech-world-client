@@ -5,7 +5,7 @@ import useAxiosPublic from "../../hooks/useAxiosPublic/useAxiosPublic";
 import toast from "react-hot-toast";
 import { AuthContext } from "../../provider/AuthProvider";
 
-const ProductCard = ({ product, refetch }) => {
+const ProductCard = ({ product }) => {
   const { user } = useContext(AuthContext);
   const navigate = useNavigate();
   const axiosPublic = useAxiosPublic();
@@ -18,7 +18,7 @@ const ProductCard = ({ product, refetch }) => {
   //     // navigate("/login");
   //   }
   // }, [user, navigate]);
-
+  // console.log(product);
   const [upVote, setUpVote] = useState(up_vote + 1);
   const handleUpVote = (id) => {
     if (!user) {
@@ -35,7 +35,7 @@ const ProductCard = ({ product, refetch }) => {
         // console.log("state", upVote);
 
         if (res.data.modifiedCount > 0) {
-          refetch();
+          // refetch();
           toast.success(" UpVote Successful!");
           setDisabled(true);
         }
