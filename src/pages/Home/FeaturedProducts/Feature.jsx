@@ -1,24 +1,35 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { BiSolidUpvote } from "react-icons/bi";
 import useAxiosPublic from "../../../hooks/useAxiosPublic/useAxiosPublic";
 import toast from "react-hot-toast";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { AuthContext } from "../../../provider/AuthProvider";
 
 const Feature = ({ feature, refetch }) => {
+  const { user } = useContext(AuthContext);
   const axiosPublic = useAxiosPublic();
+  const navigate = useNavigate();
   const [disabled, setDisabled] = useState(false);
   // console.log(feature);
   const { _id, up_vote, tags, product_name, image_url } = feature;
-
+  // useEffect(() => {
+  //   if (!user) {
+  //     setDisabled(true);
+  //   }
+  // }, [user]);
   const [upVote, setUpVote] = useState(up_vote + 1);
   const handleUpVote = (_id) => {
     // console.log(upVote);
+    if (!user) {
+      setDisabled(true);
+      return navigate("/login");
+    }
     setUpVote(upVote + 1);
 
     axiosPublic
       .patch(`/features/${_id}`, { upVote })
       .then((res) => {
-        console.log(res.data);
+        // console.log(res.data);
         // console.log("state", upVote);
         if (res.data.modifiedCount > 0) {
           refetch();

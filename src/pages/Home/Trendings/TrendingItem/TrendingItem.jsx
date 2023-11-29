@@ -2,11 +2,12 @@ import { BiSolidUpvote } from "react-icons/bi";
 import useAxiosPublic from "../../../../hooks/useAxiosPublic/useAxiosPublic";
 import { useContext, useState } from "react";
 import toast from "react-hot-toast";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../../../provider/AuthProvider";
 
 const TrendingItem = ({ item }) => {
   const [disabled, setDisabled] = useState(false);
+  const navigate = useNavigate();
   const { user } = useContext(AuthContext);
   const axiosPublic = useAxiosPublic();
   // console.log(item);
@@ -20,11 +21,17 @@ const TrendingItem = ({ item }) => {
     // release_date,
     product_name,
   } = item;
+  // useEffect(() => {
+  //   if (!user) {
+  //     setDisabled(true);
+  //   }
+  // }, [user]);
   const [upVote, setUpVote] = useState(up_vote + 1);
 
   const handleUpVote = (_id) => {
     if (!user) {
       setDisabled(true);
+      return navigate("/login");
     }
     // console.log(upVote);
     setUpVote(upVote + 1);
@@ -37,6 +44,7 @@ const TrendingItem = ({ item }) => {
         if (res.data.modifiedCount > 0) {
           // refetch();
           toast.success(" UpVote Successful!");
+          setDisabled(true);
         }
       })
       .catch((err) => {

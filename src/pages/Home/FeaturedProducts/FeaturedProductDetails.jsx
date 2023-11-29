@@ -51,8 +51,10 @@ const FeaturedProductDetails = () => {
     axiosPublic
       .post("/reports", reportedItem)
       .then((res) => {
-        // console.log(res.data);
-        if (res?.data?.insertedId) {
+        console.log(res.data);
+        if (res?.data?.message) {
+          toast.error("Already Reported");
+        } else if (res?.data?.insertedId) {
           toast.success("Report submitted successfully");
         }
       })

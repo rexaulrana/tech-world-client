@@ -44,15 +44,27 @@ const Router = createBrowserRouter([
       },
       {
         path: "/reviews",
-        element: <Reviews></Reviews>,
+        element: (
+          <PrivateRoute>
+            <Reviews></Reviews>,
+          </PrivateRoute>
+        ),
       },
       {
         path: "/report",
-        element: <Report></Report>,
+        element: (
+          <PrivateRoute>
+            <Report></Report>,
+          </PrivateRoute>
+        ),
       },
       {
         path: "/addReview/:id",
-        element: <AddReview></AddReview>,
+        element: (
+          <PrivateRoute>
+            <AddReview></AddReview>
+          </PrivateRoute>
+        ),
       },
       {
         path: "/productDetails/:id",
