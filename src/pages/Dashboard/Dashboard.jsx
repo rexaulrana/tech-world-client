@@ -3,9 +3,14 @@ import { NavLink, Outlet } from "react-router-dom";
 import { AuthContext } from "../../provider/AuthProvider";
 import {
   FaAddressCard,
+  FaComment,
+  FaContao,
+  FaDiscord,
   FaHome,
   FaProductHunt,
-  FaUserAlt,
+  FaSatelliteDish,
+  FaUser,
+  FaUserCircle,
 } from "react-icons/fa";
 import useRole from "../../hooks/useRole";
 
@@ -34,7 +39,7 @@ const Dashboard = () => {
                   to={"dashboard/statistics"}
                 >
                   <span className="mr-2">
-                    <FaUserAlt></FaUserAlt>
+                    <FaSatelliteDish></FaSatelliteDish>
                   </span>
                   Statistics
                 </NavLink>
@@ -50,7 +55,7 @@ const Dashboard = () => {
                   to={"dashboard/manageUsers"}
                 >
                   <span className="mr-2">
-                    <FaUserAlt></FaUserAlt>
+                    <FaUserCircle></FaUserCircle>
                   </span>
                   Manage Users
                 </NavLink>
@@ -65,7 +70,7 @@ const Dashboard = () => {
                   to={"dashboard/manageCoupons"}
                 >
                   <span className="mr-2">
-                    <FaUserAlt></FaUserAlt>
+                    <FaDiscord></FaDiscord>
                   </span>
                   Manage Coupons
                 </NavLink>
@@ -87,7 +92,7 @@ const Dashboard = () => {
                   to={"dashboard/reportedContents"}
                 >
                   <span className="mr-2">
-                    <FaUserAlt></FaUserAlt>
+                    <FaContao></FaContao>
                   </span>
                   Reported Contents
                 </NavLink>
@@ -102,7 +107,7 @@ const Dashboard = () => {
                   to={"dashboard/productReview"}
                 >
                   <span className="mr-2">
-                    <FaUserAlt></FaUserAlt>
+                    <FaComment></FaComment>
                   </span>
                   Product Review
                 </NavLink>
@@ -124,7 +129,7 @@ const Dashboard = () => {
                   to={"dashboard/myProfile"}
                 >
                   <span className="mr-2">
-                    <FaUserAlt></FaUserAlt>
+                    <FaUser></FaUser>
                   </span>
                   My Profile
                 </NavLink>
