@@ -12,9 +12,19 @@ const ProductDetails = () => {
   const [product, setProduct] = useState([]);
   const [loader, setLoader] = useState(false);
   const loadedData = useLoaderData();
+  // const [loadedData, setLoadedData] = useState([]);
   const { user } = useContext(AuthContext);
   const axiosPublic = useAxiosPublic();
   const { id } = useParams();
+
+  // useEffect(() => {
+  //   setLoader(true);
+  //   axiosPublic.get("/allProducts").then((result) => {
+  //     // setLoadedData(result?.data);
+  //     console.log(result.data);
+  //     setLoader(false);
+  //   });
+  // }, [axiosPublic]);
 
   // get specific data by id
   useEffect(() => {

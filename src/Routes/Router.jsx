@@ -16,6 +16,11 @@ import Dashboard from "../pages/Dashboard/Dashboard";
 import MyProfile from "../pages/Dashboard/user/MyProfile";
 import AddProduct from "../pages/Dashboard/user/AddProduct";
 import MyProducts from "../pages/Dashboard/user/MyProducts";
+import ProductReview from "../pages/Dashboard/moderator/ProductReview";
+import ReportedContents from "../pages/Dashboard/moderator/ReportedContents";
+import Statistics from "../pages/Dashboard/admin/Statistics";
+import ManageUsers from "../pages/Dashboard/admin/ManageUsers";
+import ManageCoupons from "../pages/Dashboard/admin/ManageCoupons";
 
 const Router = createBrowserRouter([
   {
@@ -87,6 +92,31 @@ const Router = createBrowserRouter([
     path: "dashboard",
     element: <Dashboard></Dashboard>,
     children: [
+      // admin nav start
+
+      {
+        path: "dashboard/statistics",
+        element: <Statistics></Statistics>,
+      },
+      {
+        path: "dashboard/manageUsers",
+        element: <ManageUsers></ManageUsers>,
+      },
+      {
+        path: "dashboard/manageCoupons",
+        element: <ManageCoupons></ManageCoupons>,
+      },
+
+      // moderator nav
+      {
+        path: "dashboard/productReview",
+        element: <ProductReview></ProductReview>,
+      },
+      {
+        path: "dashboard/reportedContents",
+        element: <ReportedContents></ReportedContents>,
+      },
+      // user nav
       {
         path: "dashboard/myProfile",
         element: <MyProfile></MyProfile>,
