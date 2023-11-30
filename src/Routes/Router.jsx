@@ -52,7 +52,7 @@ const Router = createBrowserRouter([
             <FeaturedProductDetails></FeaturedProductDetails>,
           </PrivateRoute>
         ),
-        loader: () => fetch("http://localhost:5000/features"),
+        loader: () => fetch("https://tech-world-a12.vercel.app/features"),
       },
       {
         path: "/reviews",
@@ -85,7 +85,7 @@ const Router = createBrowserRouter([
             <ProductDetails></ProductDetails>
           </PrivateRoute>
         ),
-        loader: () => fetch("http://localhost:5000/allProducts"),
+        loader: () => fetch("https://tech-world-a12.vercel.app/allProducts"),
       },
     ],
   },

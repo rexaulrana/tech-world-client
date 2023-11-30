@@ -16,9 +16,7 @@ const FeaturedProducts = () => {
   } = useQuery({
     queryKey: ["features", "lat", "old"],
     queryFn: async () => {
-      const result = await axiosPublic.get(
-        `/features?sort=${latest ? "new" : "old"}`
-      );
+      const result = await axiosPublic.get("/features");
       return result.data;
     },
   });

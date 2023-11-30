@@ -35,7 +35,7 @@ const Reviews = () => {
     return <Loader />;
   }
   // useEffect(() => {
-  //   fetch("http://localhost:5000/reviews")
+  //   fetch("https://tech-world-a12.vercel.app/reviews")
   //     .then((res) => res.json())
   //     .then((data) => {
   //       console.log(data);

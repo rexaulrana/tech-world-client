@@ -11,12 +11,10 @@ const Trending = () => {
   const [largest, setLargest] = useState(true);
   const [trending, setTrending] = useState([]);
   useEffect(() => {
-    axiosPublic(`/trending?sort=${largest ? "largest" : "short"}`).then(
-      (res) => {
-        // console.log(res?.data);
-        setTrending(res?.data);
-      }
-    );
+    axiosPublic("/trending").then((res) => {
+      // console.log(res?.data);
+      setTrending(res?.data);
+    });
   }, [largest, axiosPublic]);
 
   // console.log(trending);
