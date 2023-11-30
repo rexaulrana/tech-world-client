@@ -14,7 +14,7 @@ export const AuthContext = createContext(null);
 const AuthProvider = ({ children }) => {
   const axiosPublic = useAxiosPublic();
   const [user, setUser] = useState("");
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
   //   const axiosPublic = useAxiosPublic();
   // create user
   const createUser = (email, password) => {
@@ -64,6 +64,7 @@ const AuthProvider = ({ children }) => {
       } else {
         // if no user then remove token from LS
         localStorage.removeItem("token");
+        setLoading(false);
       }
     });
     return () => {
@@ -77,6 +78,7 @@ const AuthProvider = ({ children }) => {
     signIn,
     logOut,
     handleGoogle,
+    setLoading,
   };
   return (
     <AuthContext.Provider value={authInfo}>{children}</AuthContext.Provider>

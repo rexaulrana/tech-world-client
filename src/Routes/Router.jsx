@@ -21,6 +21,7 @@ import ReportedContents from "../pages/Dashboard/moderator/ReportedContents";
 import Statistics from "../pages/Dashboard/admin/Statistics";
 import ManageUsers from "../pages/Dashboard/admin/ManageUsers";
 import ManageCoupons from "../pages/Dashboard/admin/ManageCoupons";
+import RoleRoute from "./RoleRoute";
 
 const Router = createBrowserRouter([
   {
@@ -96,15 +97,27 @@ const Router = createBrowserRouter([
 
       {
         path: "dashboard/statistics",
-        element: <Statistics></Statistics>,
+        element: (
+          <RoleRoute>
+            <Statistics></Statistics>
+          </RoleRoute>
+        ),
       },
       {
         path: "dashboard/manageUsers",
-        element: <ManageUsers></ManageUsers>,
+        element: (
+          <RoleRoute>
+            <ManageUsers></ManageUsers>
+          </RoleRoute>
+        ),
       },
       {
         path: "dashboard/manageCoupons",
-        element: <ManageCoupons></ManageCoupons>,
+        element: (
+          <RoleRoute>
+            <ManageCoupons></ManageCoupons>
+          </RoleRoute>
+        ),
       },
 
       // moderator nav

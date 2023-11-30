@@ -11,9 +11,9 @@ import useRole from "../../hooks/useRole";
 
 const Dashboard = () => {
   const { user } = useContext(AuthContext);
-  const role = useRole();
+  const [role] = useRole();
   // console.log(role);
-  // if (role[0] === "admin") {
+  // if (role === "admin") {
   //   console.log("admin coming");
   // }
   return (
@@ -22,7 +22,7 @@ const Dashboard = () => {
         <h2 className="text-3xl font-medium py-5">Tech World</h2>
         <ul className="py-5">
           {/* admin nav start */}
-          {role[0] === "admin" && (
+          {role === "admin" && (
             <>
               <li className="">
                 <NavLink
@@ -75,7 +75,7 @@ const Dashboard = () => {
 
           {/* moderator nav  start*/}
 
-          {role[0] === "moderator" && (
+          {role === "moderator" && (
             <>
               <li className="">
                 <NavLink
@@ -104,7 +104,7 @@ const Dashboard = () => {
                   <span className="mr-2">
                     <FaUserAlt></FaUserAlt>
                   </span>
-                  Product Review Queue
+                  Product Review
                 </NavLink>
               </li>
             </>
@@ -112,7 +112,7 @@ const Dashboard = () => {
 
           {/* user nav start */}
 
-          {role[0] !== "moderator" && role[0] !== "admin" && (
+          {role !== "moderator" && role !== "admin" && (
             <>
               <li className="">
                 <NavLink
