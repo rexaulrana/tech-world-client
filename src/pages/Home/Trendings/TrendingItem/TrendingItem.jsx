@@ -54,7 +54,7 @@ const TrendingItem = ({ item }) => {
 
   return (
     <div>
-      <div className="card card-compact  h-[300px]  md:h-[300px] bg-base-100 shadow-xl ">
+      <div className="card card-compact  h-[300px]  md:h-[400px] bg-base-100 shadow-xl ">
         <figure>
           <img src={image_url} alt={product_name} />
         </figure>

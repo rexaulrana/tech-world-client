@@ -6,27 +6,31 @@ import Slider from "react-slick";
 // Import css files
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+
+import "./trending.css";
 const Trending = () => {
   const axiosPublic = useAxiosPublic();
   const [largest, setLargest] = useState(true);
   const [trending, setTrending] = useState([]);
   useEffect(() => {
-    axiosPublic("/trending").then((res) => {
+    axiosPublic.get("/trending").then((res) => {
       // console.log(res?.data);
       setTrending(res?.data);
     });
   }, [largest, axiosPublic]);
 
   // console.log(trending);
-  const settings = {
+  let settings = {
     dots: true,
     infinite: true,
     // className: "center",
-    speed: 500,
     slidesToShow: 2,
     slidesToScroll: 1,
-    arrows: true,
+    // arrows: true,
+
     autoPlay: true,
+    autoplaySpeed: 500,
+
     responsive: [
       {
         breakpoint: 1024,
@@ -68,8 +72,8 @@ const Trending = () => {
           </button>
         </div>
       </div>
-      <div className="">
-        <Slider className="mr-8 mt-5" {...settings}>
+      <div className="  ">
+        <Slider className="mt-5" {...settings}>
           {trending?.map((trendingItem) => (
             <TrendingItem
               key={trendingItem._id}
