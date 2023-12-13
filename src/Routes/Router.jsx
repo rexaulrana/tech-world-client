@@ -52,7 +52,7 @@ const Router = createBrowserRouter([
             <FeaturedProductDetails></FeaturedProductDetails>,
           </PrivateRoute>
         ),
-        loader: () => fetch("http://localhost:5000/features"),
+        loader: () => fetch("https://tech-world-a12.vercel.app/features"),
       },
       {
         path: "/reviews",
@@ -85,7 +85,7 @@ const Router = createBrowserRouter([
             <ProductDetails></ProductDetails>
           </PrivateRoute>
         ),
-        loader: () => fetch("http://localhost:5000/allProducts"),
+        loader: () => fetch("https://tech-world-a12.vercel.app/allProducts"),
       },
     ],
   },
@@ -96,7 +96,7 @@ const Router = createBrowserRouter([
       // admin nav start
 
       {
-        path: "dashboard/statistics",
+        path: "statistics",
         element: (
           <RoleRoute>
             <Statistics></Statistics>
@@ -104,7 +104,7 @@ const Router = createBrowserRouter([
         ),
       },
       {
-        path: "dashboard/manageUsers",
+        path: "manageUsers",
         element: (
           <RoleRoute>
             <ManageUsers></ManageUsers>
@@ -112,7 +112,7 @@ const Router = createBrowserRouter([
         ),
       },
       {
-        path: "dashboard/manageCoupons",
+        path: "manageCoupons",
         element: (
           <RoleRoute>
             <ManageCoupons></ManageCoupons>
@@ -122,24 +122,24 @@ const Router = createBrowserRouter([
 
       // moderator nav
       {
-        path: "dashboard/productReview",
+        path: "productReview",
         element: <ProductReview></ProductReview>,
       },
       {
-        path: "dashboard/reportedContents",
+        path: "reportedContents",
         element: <ReportedContents></ReportedContents>,
       },
       // user nav
       {
-        path: "dashboard/myProfile",
+        path: "myProfile",
         element: <MyProfile></MyProfile>,
       },
       {
-        path: "dashboard/addProduct",
+        path: "addProduct",
         element: <AddProduct></AddProduct>,
       },
       {
-        path: "dashboard/myProducts",
+        path: "myProducts",
         element: <MyProducts></MyProducts>,
       },
     ],

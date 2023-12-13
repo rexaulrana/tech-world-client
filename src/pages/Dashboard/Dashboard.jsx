@@ -36,7 +36,7 @@ const Dashboard = () => {
                       ? "text-lg flex justify-start items-center w-40 bg-white rounded-md py-1 px-3"
                       : "text-lg flex justify-start items-center"
                   }
-                  to={"dashboard/statistics"}
+                  to={"statistics"}
                 >
                   <span className="mr-2">
                     <FaSatelliteDish></FaSatelliteDish>
@@ -52,7 +52,7 @@ const Dashboard = () => {
                       ? "text-lg flex justify-start items-center w-52 bg-white rounded-md py-1 px-3"
                       : "text-lg flex justify-start items-center"
                   }
-                  to={"dashboard/manageUsers"}
+                  to={"manageUsers"}
                 >
                   <span className="mr-2">
                     <FaUserCircle></FaUserCircle>
@@ -67,7 +67,7 @@ const Dashboard = () => {
                       ? "text-lg flex justify-start items-center w-52 bg-white rounded-md py-1 px-3"
                       : "text-lg flex justify-start items-center"
                   }
-                  to={"dashboard/manageCoupons"}
+                  to={"manageCoupons"}
                 >
                   <span className="mr-2">
                     <FaDiscord></FaDiscord>
@@ -89,7 +89,7 @@ const Dashboard = () => {
                       ? "text-lg flex justify-start items-center w-52 bg-white rounded-md py-1 px-3"
                       : "text-lg flex justify-start items-center"
                   }
-                  to={"dashboard/reportedContents"}
+                  to={"reportedContents"}
                 >
                   <span className="mr-2">
                     <FaContao></FaContao>
@@ -104,7 +104,7 @@ const Dashboard = () => {
                       ? "text-lg flex justify-start items-center w-52 bg-white rounded-md py-1 px-3"
                       : "text-lg flex justify-start items-center"
                   }
-                  to={"dashboard/productReview"}
+                  to={"productReview"}
                 >
                   <span className="mr-2">
                     <FaComment></FaComment>
@@ -126,7 +126,7 @@ const Dashboard = () => {
                       ? "text-lg flex justify-start items-center w-40 bg-white rounded-md py-1 px-3"
                       : "text-lg flex justify-start items-center"
                   }
-                  to={"dashboard/myProfile"}
+                  to={"myProfile"}
                 >
                   <span className="mr-2">
                     <FaUser></FaUser>
@@ -141,7 +141,7 @@ const Dashboard = () => {
                       ? "text-lg flex justify-start items-center bg-white w-40 rounded-md py-1 px-3"
                       : "text-lg flex justify-start items-center"
                   }
-                  to={"dashboard/addProduct"}
+                  to={"addProduct"}
                 >
                   <span className="mr-2">
                     <FaAddressCard></FaAddressCard>
@@ -156,7 +156,7 @@ const Dashboard = () => {
                       ? "text-lg flex justify-start items-center w-40 bg-white rounded-md py-1 px-3"
                       : "text-lg flex justify-start items-center"
                   }
-                  to={"dashboard/myProducts"}
+                  to={"myProducts"}
                 >
                   <span className="mr-2">
                     <FaProductHunt></FaProductHunt>
