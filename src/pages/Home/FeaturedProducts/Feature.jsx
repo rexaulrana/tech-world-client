@@ -43,7 +43,7 @@ const Feature = ({ feature, refetch }) => {
   };
   return (
     <div className="card  shadow-[#56b342]  shadow-lg">
-      <figure className="px-10 pt-10">
+      <figure className=" pt-10">
         <img
           src={image_url}
           alt={product_name}

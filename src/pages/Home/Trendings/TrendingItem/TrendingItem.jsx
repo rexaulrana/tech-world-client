@@ -54,13 +54,17 @@ const TrendingItem = ({ item }) => {
 
   return (
     <div>
-      <div className="card card-compact  h-[300px]  md:h-[400px] bg-base-100 shadow-xl ">
+      <div className="card card-compact border-2 mt-5 h-[350px] w-full md:h-[400px]  bg-base-100 shadow-xl ">
         <figure>
-          <img src={image_url} alt={product_name} />
+          <img
+            className="w-[400px] rounded-md h-screen"
+            src={image_url}
+            alt={product_name}
+          />
         </figure>
-        <div className="card-body">
+        <div className="card-body text-center">
           <Link to={`/products`}>
-            <h2 className="card-title hover:font-bold hover:text-[#0e588d]">
+            <h2 className="text-2xl font-semibold hover: hover:text-[#0e588d]">
               {product_name}
             </h2>
           </Link>

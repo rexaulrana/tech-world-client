@@ -40,7 +40,7 @@ const FeaturedProducts = () => {
           {latest ? "Latest Products" : "Oldest Products"}
         </button>
       </div>
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
         {features?.map((feature) => (
           <Feature
             key={feature?._id}
